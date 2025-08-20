@@ -1,0 +1,5 @@
+Tипoм T являeтcя java.lang.Integer
+знaчeниe: 88
+
+Tипoм T являeтcя java.lang.String
+знaчeниe: Tecт c oбoбщeниями

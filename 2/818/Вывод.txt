@@ -1,0 +1,2 @@
+Кaтaлог /usr/java
+jdk-23-oracle-x64 - кaтaлог

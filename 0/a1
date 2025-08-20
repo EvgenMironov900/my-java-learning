@@ -1,0 +1,5 @@
+#!/bin/bash
+#source bash ./a2
+bash ./a2
+echo  Выполняется a1
+

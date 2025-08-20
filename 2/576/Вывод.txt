@@ -1,0 +1,2 @@
+Infinity: true, false
+NaN: false, true

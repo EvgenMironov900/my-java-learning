@@ -1,0 +1,1 @@
+display(): outer_х = 100

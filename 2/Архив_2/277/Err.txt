@@ -1,0 +1,3 @@
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at Exc1.subroutine(Exc1.java:9)
+	at Exc1.main(Exc1.java:12)

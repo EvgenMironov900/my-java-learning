@@ -1,0 +1,2 @@
+b paвнo true
+ch2 paвнo x

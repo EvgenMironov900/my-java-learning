@@ -1,0 +1,2 @@
+object1: s=Hello; i=-7; d=2.7E10
+object2: s=Hello; i=-7; d=2.7E10

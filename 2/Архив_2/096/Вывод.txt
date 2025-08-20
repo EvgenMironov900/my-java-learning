@@ -1,0 +1,9 @@
+
+Пpeoбpaзoвaниe int в byte.
+i и Ь : 257 1
+
+Пpeoбpaзoвaниe double в int.
+d и i : 323.142 323
+
+Преобразование double в byte.
+d и Ь : 323.142 67

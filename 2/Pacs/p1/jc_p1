@@ -1,0 +1,2 @@
+javac Demo.java Derived.java Protection.java SamePackage.java
+

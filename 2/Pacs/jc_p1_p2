@@ -1,0 +1,2 @@
+javac p1/Demo.java p1/Derived.java p1/Protection.java p1/SamePackage.java p2/Demo.java p2/Protection2.java p2/OtherPackage.java
+

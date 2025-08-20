@@ -1,0 +1,2 @@
+ob1 == ob2: true
+ob1 == obЗ: false

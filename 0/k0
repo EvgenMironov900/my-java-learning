@@ -1,0 +1,15 @@
+#!/bin/bash
+cd ~/EE/MyJAVA/2
+# echo $1
+#sleep 10
+javac $1.java
+if [ $? = 0 ]; then
+#  java $1 > bk.txt
+  java $* > bk.txt
+  exit
+else
+  echo Ошибочка компиляции! 
+#  set -e
+  exit 1
+fi
+

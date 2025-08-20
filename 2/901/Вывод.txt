@@ -1,0 +1,6 @@
+Kaтaлoг ../901
+<КAT>asdfghhj
+     DirList.java
+     DirList.class
+     Err.txt
+     Вывод.txt

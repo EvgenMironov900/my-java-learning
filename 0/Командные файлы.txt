@@ -1,0 +1,357 @@
+Командные файлы
+
+
+В Linux, так же как и в операционных системах семейства Microsoft Windows можно создавать командный файл ... которые содержат в себе набор команд интерпретатора shell. Такие файлы имеют свой синтаксис, который позволяет оперировать такими структурами как циклы и условия. Далее основы shell программирования linux  на примере командной строки ubuntu 9.04 и интерпретатора bash.
+
+Основы
+
+Запишем в файл sample последовательность команд
+
+$ cat sample
+pwd
+ls
+echo The END
+
+А теперь выполним эти команды
+
+$ sh sample
+/home/sgww
+cpp  file.txt  mydaemon  net_sh  perl  php  sample
+The END
+
+Таков принцип ...
+
+Командный файл легко сделать исполняемым
+
+$ chmod +x sample
+$ /home/sgww/sample
+/home/sgww
+cpp  file.txt  mydaemon  net_sh  perl  php  sample
+The END
+
+Коментарии
+
+$ cat sample
+read x #вводим x
+read y #вводим y
+echo `expr $x '*' $y + 7`
+
+Всё что за знаком # это коментарий и интерпритатором не воспринимается
+Не относится к оболочке csh!
+
+Параметры
+
+$1, $2 ...$9 - позволяют задавать аргументы командной строки для выполняемого файла
+
+$ cat sample
+echo the first parameter: $1
+echo the second parametr: $2
+echo the third parameter: $3
+ls $1 $2 $3
+
+$ /home/sgww/sample -l -s -r
+the first parameter: -l
+the second parametr: -s
+the third parameter: -rtotal 28
+4 -rwxr-xr-x 1 sgww sgww  100 Mar  2 11:19 sample
+4 drwxr-xr-x 2 sgww sgww 4096 Dec 15 16:52 php
+4 drwxr-xr-x 2 sgww sgww 4096 Feb  1 15:39 perl
+4 -rw-r--r-- 1 sgww sgww   79 Mar  1 16:16 net_sh
+4 drwxr-xr-x 2 sgww sgww 4096 Feb  1 17:15 mydaemon
+4 -rw-r--r-- 1 sgww sgww   56 Mar  1 17:18 file.txt
+drwxr-xr-x 2 sgww sgww 4096 Feb  1 17:15 cpp
+
+Параметры $# и $*
+
+$# - задает общее количество параметров с которым вызывается командный файл
+
+$ cat sample
+echo total parameters are: $#
+$ sample param1 param2 param3
+total parameters are: 3
+
+$* - содержит сразу все параметры
+
+$ cat sample
+echo total parameters are: $*
+$ sample All parameters are in this variable
+total parameters are: All parameters are in this variable
+
+Переменные
+
+Имя переменной может начинаться с буквы или символа подчереркивания
+знак равенства(=) это оператор присваиивания
+
+_var=1
+_word =slovo
+value="t ak aia dli nna iain epo niat naia str oka"
+
+Тип данных переменных shell это всегда строка символов!
+
+$ cat sample
+_string="Hello from Perm"
+echo $_string
+$ /home/sgww/sample
+Hello from Perm
+
+результат выполения команды в переменную (команда обрамляется обратными апострофами)
+
+$cat sample
+_date=`date`
+echo $_date
+$/home/sgww/sample
+Tue Mar 2 11:41:30 YEKT 201
+
+ввод значения переменной в консоли
+
+$ cat sample
+echo Enter data:
+read data1
+read data2
+echo Your data:  $data1 and  $data2
+$ /home/sgww/sample
+Enter data:
+Linux
+Windows
+Your data: Linux and Windows
+
+Системные переменные
+
+$ cat sample
+echo $PATH
+echo $HOME
+echo $MAIL
+echo $SHELL
+$ /home/sgww/sample
+/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/games
+/home/sgww
+/var/mail/sgww
+/bin/bash
+
+PATH - пути поиска исполняемых файло (так как каталога /home/sgww/ там нет, постояно приходилось писать полный путь /home/sgww/sample для выполнения команды)
+HOME - домашний каталог
+MAIL - файл электронной почты
+SHELL - оболочка в которой работаем
+
+Добавим к переменной PATH каталог HOME что бы не приходилось постоянно писать полный путь
+
+$ cat sample
+PATH=$PATH:$HOME
+Эти строки следует добавить в ~/.profile или ~/.bash_profile
+теперь нет необходимости писать полный путь до команды
+
+Специальные символы
+
+* - любая последовательность, любых символов
+? - один любой символ
+[...] - любой из символов диапазона
+
+Двойные кавычки ""
+
+$echo *
+cpp file.txt mydaemon net_sh perl php sample
+$ echo "*"
+*
+
+Апострофы ''
+
+
+$ cat sample
+text="This is a text"
+echo '$text'
+$ sample
+$text
+
+Обратный слэшь \
+
+$ cat sample
+text="This is a text"
+echo \$text
+$ sample
+$text
+
+Обратный апостроф ``
+
+$ cat sample
+text=`pwd`
+echo $text
+$ sample
+/home/sgww
+
+Арифметические операции
+
+Для выполнения арифметических операций в командном файле понадобиться команда expr
+
+$ expr 7 + 96
+103
+$ expr 87 - 555
+-468
+$  expr 18 / 2
+9
+$ expr 19 / 2
+9
+$ expr 19 % 2
+1
+$ expr 6 \* 32
+192
+$ expr 6 '*' 32
+192
+$ expr 6 * 32
+expr: syntax error
+
+
+Если при умножении не поставить  \ или '' то * будет восприниматься как любой символ
+
+Стоит отметить, что \ - это не деление, а целая часть от деления, операция % дает остаток от деления
+
+$ cat sample
+read x
+read y
+echo `expr $x '*' $y + 7`
+$ sample
+4
+5
+27
+
+Переменные окружения, команда export и unset
+
+Для взаимодейстивя с другими процессами могут пригодияться переменные окружения
+
+Их полный списко можно посмотреть командой export
+
+$ export
+declare -x HISTCONTROL="ignoreboth"
+declare -x HOME="/home/sgww"
+declare -x LESSCLOSE="/usr/bin/lesspipe %s %s"
+declare -x LESSOPEN="| /usr/bin/lesspipe %s"
+declare -x LOGNAME="sgww"
+...
+
+Задать свою переменную
+
+$ name=Pavel && export name
+$ echo $name
+Pavel
+
+Удалить
+
+$ unset name
+$ echo name
+
+Условие IF
+
+Для составления условных выражений оператора if очень полезна программа test.
+
+$ cat sample
+if test -r sample
+then
+   echo True
+else
+   echo False
+fi
+$ sample
+True
+
+В этом примере test -r sample - это условие
+echo True выполняется если условие истино
+echo False если ложно
+
+Программа test предназначена для проверки типов файлов и сравнения значений
+
+$test -r file # Истино если файл file существует и доступен для чтения
+$test -w file # Истино если файл file существует и доступен для записи
+$test -x file # Истино если файл file существует и доступен для выполнения
+
+$ x=32 && export x
+$ y=32 && export y
+
+$test $x -eq $y # Истино если $x равен $y
+$test $x -en $y # Истино если $x не равен $y
+$test $x -ge $y # Истино если $x больше или равен $y
+$test $x -gt $y # Истино если $x больше $y
+$test $x -le $y # Истино если $x меньше или равен $y
+$test $x -lt $y # Истино если $x меньше $y
+
+Остальные параметры можно посмотреть в man test
+
+Цикл FOR
+
+$ cat sample
+for x in  1 two 3
+do
+ echo $x
+done
+$ sample
+1
+two
+3
+
+В этом цикле код между do и done выполниться 3 раза, при этом первый раз
+x=1, второй раз x=two и последний x=3
+
+Другой интересный пример
+
+$ cat sample
+for x in *
+do
+ echo $x
+done
+$ sample
+cpp
+demo
+file.txt
+mydaemon
+net_sh
+perl
+php
+sample
+
+* в списке переменных цикла, заставляет for использовать в качестве значения $x элементы текущего каталога
+
+Циклы WHILE и UNTIL
+
+$ cat sample
+while test -r file
+do
+ sleep 10
+ echo file exists
+done
+echo file does not exist
+
+$ touch file
+$ sample
+file exists
+file exists
+Ctr+Z
+[1]+  Stopped                 sample
+$ rm file
+$ fg
+sample
+file exists
+file does not exist
+
+
+$ cat sample
+until test -r file
+do
+sleep 5
+echo file does not exist
+done
+echo file exists
+$ sample
+file does not exist
+file does not exist
+Ctr+Z
+[1]+  Stopped                 sample
+$ touch file
+$ fg
+sample
+file does not exist
+file exists
+$
+
+Вот и всё
+Tags: bash, export, it, linux, sh, test
+
+https://sgww.livejournal.com/8836.html
+

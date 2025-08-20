@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# cd ~/EE/MyJAVA/0
+
+#echo $PATH
+#echo $HOME
+#echo $MAIL
+#echo $SHELL
+# PATH=$PATH:$HOME
+
+#_date=`date`
+#echo $_date
+
+#echo `date`
+
+#text=`pwd`
+#echo $text
+
+

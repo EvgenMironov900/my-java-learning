@@ -1,0 +1,6 @@
+Bнyтpи area() для Rectangle.
+Плoщaдь равна 45.0
+Bнyтpи area() для Triangle.
+Плoщaдь равна 40.0
+Плoщaдь для Figure не определена.
+Плoщaдь равна 0.0

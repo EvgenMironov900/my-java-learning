@@ -1,0 +1,10 @@
+n paвнo 3
+n paвнo 2
+n paвнo 1
+n paвнo 0
+n paвнo -1
+n paвнo -2
+n paвнo -3
+n paвнo -4
+n paвнo -5
+n paвнo -6

@@ -1,0 +1,1 @@
+cd ~/EE/MyJAVA/2

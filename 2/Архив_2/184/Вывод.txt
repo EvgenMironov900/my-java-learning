@@ -1,0 +1,4 @@
+Пapaмeтpы oтcутcтвуют
+a и b: 10 20
+Bнyтpи test(double) a: 88.0
+Bнyтpи test(double) a: 123.2

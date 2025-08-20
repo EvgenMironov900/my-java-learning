@@ -1,0 +1,904 @@
+
+/*
+
+Нaзoвитe этoт фaйл 416 BoundedWildcard.java
+*/
+
+  }
+}
+
+/*
+Рeзyльтaт paбoты пpoгpaммы:
+
+
+*/
+
+
+// Ограниченный аргумент с подстановочным знаком.
+// Двумерные координаты.
+class TwoD {
+int x, y;
+TwoD(int а, int Ь) {
+x = а;
+y Ь;
+// Трехмерные координаты.
+class ThreeD extends TwoD
+int z;
+ThreeD(int а, int Ь, int с) {
+super(а, Ь);
+z = с;
+// Четырехмерные координаты.
+class FourD extends ThreeD {
+int t;
+FourD(int а, int Ь, int с, int d) {
+super(а, Ь, с);
+t = d;
+// Этот класс хранит массив объектов координат.
+class Coords<T extends TwoD> {
+T[] coords;
+Coords(T[] о)
+coords = о;
+// Демонстрация использования ограниченного
+// аргумента с подстановочным знаком.
+class BoundedWildcard {
+static void showXY(Coords<?> с) {
+System.out.println("Koopдинaты X Y: ");
+for(int i=0; i < c.coords.length; i++)
+System.out.println(c.coords[i].x +" " +
+c.coords[i].y);
+System.out.println();
+static void showXYZ(Coords<? extends ThreeD> с) {
+System.out.println("Координаты X Y Z: ");
+for(int i=0; i < c.coords.length; i++)
+System.out.println(c.coords[i].x +" " +
+c.coords[i].y +"" +
+с.coords[ i].z);
+System.out.println();
+static void showAll(Coords<? extends FourD> с)
+System.out.println("Koopдинaты X Y Z T: ");
+for(int i=0; i < c.coords.length; i++)
+System.out.println(c.coords[i].x +" " +
+с.coords[ i].y + " " +
+с.coords[ i].z + " " +
+c.coords[i].t);
+System.out.println();
+puЬlic static void main(String[] args) {
+TwoD[] td =(
+};
+new TwoD(0, 0),
+new TwoD(7, 9),
+new TwoD(l8, 4),
+new TwoD(-1, -23)
+Coords<TwoD> tdlocs = new Coords<TwoD>(td);
+System.out.println("Содержимое tdlocs.");
+showXY(tdlocs); // Нормально, это объект TwoD
+// showXYZ(tdlocs); // Ошибка, не объект ThreeD
+// showAll(tdlocs); // Ошибка, не объект FourD
+// Создать несколько объектов FourD.
+FourD[] fd =(
+};
+new FourD(1, 2, 3, 4),
+new FourD(6, 8, 14, 8),
+new FourD(22, 9, 4, 9),
+new FourD(3, -2, -23, 17)
+Coords<FourD> fdlocs = new Coords<FourD>(fd);
+System.out.println("Coдepжимoe fdlocs.");
+// Все вызовы ВЫПОЛНЯТСЯ успешно.
+showXY(fdlocs);
+showXYZ(fdlocs);
+showAll(fdlocs);
+
+
+421
+// Демонстрация определения простого обобщенного метода.
+class GenMethDemo {
+// Выяснить, присутствует ли объект в массиве.
+static <T extends Comparable<T>, V extends T> boolean isin(T x, V[] y) {
+for(int i=0; i < y.length; i++)
+if(x.equals(y[i])) return true;
+return false;
+puЬlic static void mai:1(String[] args) {
+// Использовать isin() для объектов Integer.
+Integer[] nums = { 1, 2, 3, 4, 5 };
+if(isin(2, nums))
+System.out.println("2 присутствует в nums");
+if(!i sin(7, nums))
+System.out.println("7 не присутствует в nums");
+System.out.println();
+// Использовать isin() для объектов String.
+String[] strs = { "one", "two", "three",
+"four"
+, "five" };
+if(isin("two", strs))
+System.out.println("two присутствует в strs");
+if(!isin("seven ", strs))
+System.out.println("seven не присутствует в strs");
+// Не скомпилируется ! Типы должны быть совместимыми.
+// if(i sin("two", nums))
+// System.out.println("two присутствует в nums");
+
+
+424
+// Использование обобщенного конструктора.
+class GenCons {
+private double val;
+<Textends NumЬer> GenCons(T arg) {
+val = arg.doubleValue();
+void showVal() {
+System.out.println("val : " + val);
+class GenConsDemo {
+puЬlic static void main(String[] args)
+GenCons test = new GenCons(l00);
+GenCons test2 = new GenCons(l23.5F);
+test.showVal();
+test2.showVal();
+
+
+424_2
+// Пример обобщенного интерфейса.
+// Интерфейс для нахождения минимального и максимального значений.
+interface MinMax<T extends Comparable<T>> {
+T min();
+T max();
+// Реализовать интерфейс MinMax.
+class MyClass<T extends Comparable<T>> implements MinMax<T> {
+T[] vals;
+MyClass(T[] о) {
+vals = о;
+// Возвратить минимальное значение в vals.
+public T min() {
+T v = vals[0];
+for(int i=l; i < vals.length; i++)
+if(vals[i].compareTo(v) < 0)
+v = vals[i];
+return v;
+// Возвратить максимальное значение в vals.
+pub1ic T max() {
+T v = vals[0];
+for(int i=l; i < vals.length; i++)
+if(vals[i].compareTo(v) > 0)
+v = vals[i];
+return v;
+class GenIFDemo {
+public static void main(String[] args)
+Integer[] inums = {3, 6, 2, 8, 6 };
+Character[] chs = { 'Ь ', ' r ', 'р ', 'w ' };
+Глава 14.Обобщения 425
+MyClass<Integer> iob = new MyClass<Integer>(inums);
+MyClass<Character> соЬ = new MyClass<Character>(chs);
+System.out.println("Максимальное значение в inums : " + iob.max());
+System.out.println("Минимaльнoe значение в inums : " + iob.min());
+System.out.println("Мaкcимaльнoe значение в chs : " + cob.max());
+System.out.println("Минимальное значение в chs : " + cob.min());
+
+
+427
+// Демонстрация низкоуровневого типа в действии.
+class Gen<T> {
+T оЬ; // объявить объект типа T
+// Передать конструктору ссыпку на объект типа T.
+Gen(T о) {
+оЬ = о;
+// Возвратить оЬ.
+T getOb() {
+return оЬ;
+// Использование низкоуровневого типа.
+class RawDemo {
+public static void main(String[] args)
+// Создать объект Gen дпя объектов Integer.
+Gen<Integer> iOb = new Gen<Integer>(88);
+// Создать объект Gen для объектов St ring.
+Gen<String> strOb = new Gen<String>("Тест обобщений");
+// Создать низкоуровневый объект Gen и предоставить ему значение Double.
+Gen raw = new Gen(DouЬle.valueOf(98.6));
+// Приведение здесь обязательно, потому что тип неизвестен.
+double d =(DouЬle) raw.getOb();
+System.out.println("знaчeниe : " + d);
+// Использование низкоуровневого типа может стать причиной
+// генерации исключений во время выполнения.
+// Вот несколько примеров.
+// Следующее приведение вызывает ошибку во время выполнения !
+// int i =(Integer) raw.getOb(); // ошибка во время выполнения
+// Это присваивание обходит механизм безопасности типов.
+strOb = raw; // Нормально, но потенциально неправильно
+// String str = strOb.getOb(); // ошибка во время выполнения
+// Это присваивание обходит механизм безопасности типов.
+raw = iOb; // Нормально, но потенциально неправильно
+// d =(DouЬle) raw.getOb(); // ошибка во время выполнения
+
+
+430
+// Подкласс может добавлять собственные параметры типов.
+class Gen<T> {
+T оЬ; // объявить объект типа T
+// Передать конструктору ссылку на объект типа T.
+Gen(T о) {
+оЬ = о;
+// Возвратить оЬ.
+T getOb() {
+return оЬ;
+// Подкласс Gen, определяющий второй параметр типа по имени V.
+class Gen2<T, V> extends Gen<T> {
+V оЬ2;
+Gen2(T о, V о2)
+super(о);
+оЬ2 = о2;
+V get0b2()
+return оЬ2;
+// Создать объект типа Gen2.
+class HierDemo {
+puЬlic static void main(String[] args) {
+// Создать объект Gen2 для String и Integer.
+Gen2<String, Integer> x =
+new Gen2<String, Intеgеr>("Значение : ", 99);
+System.out.print(x.getOb());
+System.out.println(x.get0b2());
+
+
+
+431
+// Необобщенный класс может быть суперклассом обобщенного подкласса.
+// Необобщенный класс.
+class NonGen {
+int num;
+NonGen(int i)
+num = i;
+int getnum()
+return num;
+// Обобщенный подкласс.
+class Gen<T> extends NonGen
+T оЬ; // объявить объект типа T
+// Передать конструктору ссылку на объект типа т.
+Gen(T о, i n t i) {
+super(i);
+оЬ = о;
+// Возвратить оЬ.
+T getOb() {
+return оЬ;
+// Создать объект Gen.
+class HierDemo2 {
+public static void main(String[] args } {
+// Создать объект Gen для String.
+Gen<String> w = new Gen<String>("Дoбpo пожаловать", 47);
+System.out.print(w.getOЬ(} + " "};
+System.out.println(w.getnum());
+
+
+432
+// Использование операции iпstanceof с иерархией обобщенных классов.
+class Gen<T> {
+T оЬ;
+Gen(T о)
+оЬ = о;
+// Возвратить оЬ.
+T getOb()(
+return оЬ;
+// Подкласс Gen.
+class Gen2<T> extends Gen<T>(
+Gen2(T о)(
+super(o);
+Глава 14.Обобщения 433
+// Демонстрация последствий идентификации типов во время
+// выполнения для иерархии обобщенных классов.
+class HierDemoЗ(
+puЬl ic static void main(String[] args) {
+// Создать объект Gen для Integer.
+Gen<Integer> iOb = new Gen<Integer>(BB);
+// Создать объект Gen2 для Integer.
+Gen2<Integer> iOb2 = new Gen2<Integer>(99);
+// Создать объект Gen2 для String.
+Gen2<String> strOb2 = new Gen2<String>("Tecт обобщений");
+// Выяснить, является ли i0b2 какой-то формой Gen2.
+if(i0b2 instanceof Gen2<?>)
+System.out.println("i0b2 - экземпляр Gen2");
+// Выяснить, является ли iOb2 какой-то формой Gen.
+if(i0b2 instanceof Gen<?>)
+System.out.println("i0b2 - экземпляр Gen");
+System.out.println();
+// Выяснить, является ли str0b2 экземпляром Gen2.
+if(str0b2 instanceof Gеп2<?>)
+System.out.println(" str0b2 - экземпляр Gen2");
+// Выяснить, является ли str0b2 экземпляром Gen.
+if(str0b2 instanceof Gen<?>)
+System.out.println(" str0b2 - экземпляр Gen");
+System.out.println();
+// Выяснить, является ли iOb экземпляром Gen2, что не так.
+if(iOb instanceof Gen2<?>)
+System.out.println("iOb - экземпляр Gen2");
+// Выяснить, является ли iOb экземпляром Gen, что так.
+if(iOb iпstanceof Gen<?>)
+System.out.println("iOb - экземпляр Gеп");
+
+435
+// Переопределение обобщенного метода в обобщенном классе.
+class Gen<T> {
+T оЬ; // объявить объект типа T
+// Передать конструктору ссылку на объект типа T.
+Gen(T о) {
+оЬ = о;
+// Возвратить оЬ.
+T getOb() {
+System.out.print("getOb() в Gen : ");
+return оЬ;
+// Подкласс Gen, в котором переопределяется getOb().
+class Gen2<T> extends Gen<T> {
+Gen2(T о) {
+super(o);
+// Переопределить getOb().
+T getOb() {
+System.out.print("getOb() в Gen2 : ");
+return оЬ;
+// Демонстрация переопределения обобщенного метода.
+class OverrideDemo {
+public static void main(String[] args) {
+// Создать объект Gen для Integer.
+Gen<Integer> iOb = new Gen<Integer>(BB);
+// Создать объект Gen2 для Integers.
+Gen2<Integer> i0b2 = new Gen2<Integer>(99);
+// Создать объект Gen2 для Strings.
+Gen2<String> str0b2 = new Gen2<String>("Тест обобщений");
+System.out.println(iOb.getOb());
+System.out.println(i0b2.get0b());
+System.out.println(str0b2.get0b());
+
+
+439
+// Ситуация, в которой создается мостовой метод.
+class Gen<T> {
+T оЬ; // объявить объект типа T
+// Передать конструктору ссыпку на объект типа T.
+Gen(T о) {
+оЬ = о;
+// Возвратить оЬ.
+T getOb() {
+return оЬ;
+// Подкласс Gen.
+class Gen2 extends Gen<String> {
+Gen2(String о) {
+super(o);
+// Переопределенная версия getOb(), специфичная для String.
+String getOb() {
+System.out.print("Bызвaн метод getOb(), специфичный для String : ");
+return оЬ;
+// Демонстрация ситуации, когда требуется мостовой метод.
+class BridgeDemo {
+public static void main(String[] args) {
+// Создать объект Gen2 для String.
+Gen2 strOb1 = new Gen2("Тест обобщений");
+System.out.println(strOb1.getOb());
+
+
+442
+// Обобщения и массивы.
+class Gen<T extends Number> {
+T оЬ;
+T[] vals; // нормально
+Gen(T о, T[] nums) {
+оЬ = о;
+// Этот оператор недопустим.
+// vals = new T[l0]; // невозможно создать массив элементов тиnа T
+// Но следующий оператор законен.
+vals = nums; // присваивать ссьmку на существующий массив разрешено
+class GenArrays {
+public static void main(String[] args) {
+Integer[] n= { 1, 2, 3, 4, 5 };
+Gen<Integer> iOb = new Gen<Integer>(S0, n);
+// Невозможно создать массив обобщенных ссыпок для конкретного типа.
+// Gen<Integer>[] gens = new Gen<Integer>[l0]; // Ошибка !
+// Все нормально.
+Gen<?>[] gens = new Gen<?>[l0];
+
+
+448
+// Демонстрация использования простого лямбда-выражения.
+// Функциональный интерфейс.
+interface MyNшnЬer {
+double getValue();
+class LamЬdaDemo {
+public static void main(String[] args)
+{
+MyNumЬer myNum; // объявить ссылку на интерфейс
+// Здесь лямбда-выражение представляет собой константное выражение.
+// Когда оно присваивается myNum, конструируется экземпляр класса,
+// где лямбда-выражение реализует метод getValue() из MyNumber.
+myNum =() -> 123.45;
+// Вызвать метод getValue(), предоставляемый ранее
+// присвоенным лямбда-выражением.
+System.out.println("Фикcиpoвaннoe значение : " + myNum.getValue());
+// Здесь используется более сложное лямбда-выражение.
+myNum =() -> Math.random() * 100;
+// В следующих операторах вызывается лямбда-выражение
+// из предыдущей строки кода.
+System.out.println("Случайное значение : " + myNum.getValue());
+System.out.println("Eщe одно случайное значение : " + myNum.getValue());
+// Лямбда-выражение должно быть совместимым с методом,
+// определенным в функциональном интерфейсе.
+// Следовательно, показанный ниже код работать не будет :
+// myNum =() -> "123.03"; // Ошибка !
+
+
+448_2
+// Демонстрация использования лямбда-выражения, принимающего параметр.
+// Еще один функциональный интерфейс.
+interface NumericTest {
+boolean test(int n);
+class LamЬdaDemo2 {
+public static void main(String[] args)
+// Лямбда-выражение, которое проверяет, четное ли число.
+NumericTest isEven =(n) ->(n % 2)==0;
+if(isEven.test(l0)) System.out.println("l0 -- четное число");
+if(!isEven.test(9)) System.out.println("9 -- нечетное число");
+// Лямбда-выражение, которое проверяет, является ли
+// число неотрицательным.
+NumericTest isNonNeg =(n) -> n >= 0;
+if(isNonNeg.test(l)) System.out.println("l -- неотрицательное число");
+if(! isNonNeg.test(-1)) System.out.println("-1 -- отрицательное число");
+
+
+450
+// Демонстрация использования лямбда-выражения, принимающего два параметра.
+interface NumericTest2 {
+boolean test(int n, int d);
+class LambdaDemoЗ {
+public static void main(String[] args)
+{
+// Это лямбда-выражение выясняет, является ли одно число
+// множителем другого.
+NumericTest2 isFactor =(n, d) ->(п % d) == 0;
+if(isFactor.test(l0, 2))
+System.out.println("2 является множителем 10");
+if('isFactor.test(l0, 3))
+System.out.println("З не является множителем 10");
+
+
+451
+// Блочное лямбда-выражение, которое вычисляет факториал значения int.
+interface NumericFunc {
+int func(int n);
+class BlockLamЬdaDemo
+public static void main(String[] args)
+{
+// Это блочное лямбда-выражение вычисляет факториал значения int.
+NumericFunc factorial =(n) -> {
+int result = 1;
+for(int i=l; i <= n; i++)
+result = i * result;
+return result;
+};
+System.out.println("Фaктopиaл 3 равен " + factorial.func(З));
+System.out.println("Фaктopиaл 5 равен " + factorial.func(S));
+
+
+453
+// Использование обобщенного функционального интерфейса с лямбда-выражениями.
+// Обобщенный функциональный интерфейс.
+interface SomeFunc<T> {
+T func(T t);
+class GenericFunctionalinterfaceDemo
+public static void main(String[] args)
+{
+// Использовать версию String интерфейса SomeFunc.
+SomeFunc<String> reverse =(str) -> {
+String result = "";
+int i;
+for(i = str.length() -1; i >= 0; i--)
+result += str.charAt(i);
+return result;
+};
+System.out.println("Строка LamЬda с противоположным порядком
+следования символов: " +
+reverse.func("LamЬda"));
+System.out.println("Cтpoкa Expression с противоположным порядком
+следования символов: " +
+reverse.func("Expression"));
+// Теперь использовать версию Integer интерфейса SorneFunc.
+SomeFunc<Integer> factorial =(n) -> {
+};
+int result = 1;
+for(int i=1; i <= n; i++)
+result = i * result;
+retum result;
+System.out.println("Фaктopиaл 3 равен " + factorial.func(З));
+System.out.println("Фaктopиaл 5 равен " + factorial.func(5));
+
+
+
+454
+// Использование лямбда-выражений в качестве аргумента метода.
+interface StringFunc {
+String func(String n);
+class LamЬdasAsArgumentsDemo
+// Типом первого параметра этого метода является функциональный интерфейс.
+// Таким образом, ему можно передавать ссыпку на любой экземпляр реализации
+// данного интерфейса, в том числе экземпляр, созданный лямбда-выражением.
+// Во втором параметре указывается строка, с которой нужно работать.
+static String striпgOp(StringFuпc sf, Striпg s) {
+return sf.fuпc(s);
+puЬlic static void main(String[] args)
+(
+String iпStr = "LamЬdas add power to Java";
+Striпg outStr;
+System.out.priпtln("Иcxoднaя строка: " + inStr);
+// Простое одиночное лямбда-выражение, которое переводит
+// в верхний регистр строку, переданную методу stringOp().
+outStr = stringOp((str) -> str.toUpperCase(), iпStr);
+System.out.priпtln("Cтpoкa в верхнем регистре: " + outStr);
+// Передать блочное лямбда-выражение, которое удаляет пробелы.
+outStr = stringOp({str) -> {
+String result = "";
+int i;
+for(i = 0; i < str.leпgth(); i++)
+if(str.charAt(i) != ' ')
+result += str.charAt(i);
+return result;
+}, inStr);
+System.out.printlп("Cтpoкa после удаления пробелов: " + outStr);
+// Конечно, можно также передавать экземпляр StringFunc, заблаговременно
+// созданный лямбда-выражением.Например, после выполнения следующего
+// объявления reverse будет ссылаться на экземпляр StringFunc.
+StringFunc reverse = {str) -> {
+String result = "";
+int i;
+for(i = str.length()-1; i >= 0; i--)
+result += str.charAt(i);
+return result;
+};
+// Теперь reverse можно передать в первом параметре методу stringOp(),
+// поскольку этот параметр является ссылкой на объект StringFunc.
+System.out.println("Cтpoкa с противоположным порядком следования
+символов: " + stringOp(reverse, inStr)};
+
+
+457
+// Генерация исключения в лямбда-выражении.
+interface DouЬleNurnericArrayFunc {
+double func(douЬle[] n) throws EmptyArrayException;
+class EmptyArrayException extends Exception {
+EmptyArrayException()(
+super("Массив пуст");
+class LambdaExceptionDemo {
+public static void main(String[] args) throws EmptyArrayException
+{
+double[] values = { 1.0, 2.0, 3.0, 4.0 };
+// Это блочное лямбда-выражение вычисляет среднее
+// значение для массива элементов типа double.
+DoubleNumericArrayFunc average =(n) ->
+double sum = 0;
+if(n.length == 0)
+throw new EmptyArrayException();
+for(int i=0; i < n.length; i++)
+sum += n[i];
+return sum / n.length;
+};
+System.out.println("Cpeднee значение равно " + average.func(values));
+// Следующий код приводит к генерации исключения.
+System.out.println("Среднее значение равно " + average.func(new double[0]));
+
+
+458
+// Пример захвата локальной переменной из объемлющей области видимости.
+iпterface MyFunc {
+int func(int n);
+class VarCapture {
+public static void main(String[] args)
+{
+Глава 15.Лямбда-выражения 459
+// Локальная переменная, которая может быть захвачена.
+int num = 10;
+MyFunc myLamЬda =(n) ->
+// Использовать num подобным образом разрешено.
+// Переменная num не модифицируется.
+int v = num + n;
+// Однако следующая строка кода недопустима из-за того,
+// что она пытается модифицировать значение num.
+// num++;
+return v;
+};
+// Следующая строка кода тоже вызовет ошибку, потому что
+// она устранит статус переменной num как фактически финальной.
+// num = 9;
+
+
+460
+// Демонстрация использования ссылки на статический метод.
+// Функциональный интерфейс для операций над строками.
+interface StringFunc {
+String func(String n);
+// В этом классе определен статический метод по имени strReverse().
+class MyStringOps {
+// Статический метод, который изменяет порядок следования
+// символов на противоположный.
+static String strReverse(String str) {
+String result = "";
+int i;
+for(i = str.length()-1; i >= 0; i--)
+result += str.charAt(i);
+return result;
+class MethodRefDemo {
+// Первый параметр этого метода имеет тип функционального интерфейса.
+// Таким образом, ему можно передать любой экземпляр реализации
+// интерфейса StringFunc, включая ссылку на метод.
+static String stringOp(StringFunc sf, String s) {
+return sf.func(s);
+public static void main(String[] args)
+{
+String inStr = "LamЬdas add power to Java";
+String outStr;
+// Передать в stringOp() ссылку на статический метод strReverse().
+outStr = stringOp(MyStringOps: :strReverse, inStr);
+System.out.println("Иcxoднaя строка: " + inStr);
+System.out.println("Cтpoкa с противоположным порядком следования
+символов: " + outStr);
+
+
+461
+// Демонстрация использования ссылки на метод экземпляра.
+// Функциональный интерфейс для операций над строками.
+interface StringFunc {
+String func(String n);
+// Теперь в этом классе определен метод экземпляра по имени strReverse().
+class MyStringOps {
+String strReverse(String str) {
+String result = "";
+int i;
+for(i = str.length()-1; i >= 0; i--)
+result += str.charAt(i);
+return res ul t;
+class MethodRefDemo2 {
+// Первый параметр этого метода имеет тип функционального интерфейса.
+// Таким образом, ему можно передавать любой экземпляр реализации
+// интерфейса StringFunc, включая ссыпку на метод.
+static String stringOp(StringFunc sf, String s) {
+return sf.func(s);
+public static void main(String[] args)
+{
+String inStr = "LamЬdas add power to Java";
+String outStr;
+// Создать объект MyStringOps.
+MyStringOps strOps = new MyStringOps();
+// Передать в stringOp() ссылку на метод экземпляра strReverse().
+outStr = stringOp(strOps: :strReverse, inStr);
+System.out.println("Иcxoднaя строка : " + inStr);
+System.out.println("Cтpoкa с противоположным порядком следования символов: "
++ outStr);
+
+462
+// Использование ссылки на метод экземпляра с разными объектами.
+// Функциональный интерфейс с методом, который получает два
+// ссылочных аргумента и возвращает булевский результат.
+interface MyFunc<T> {
+boolean func(T v1, T v2);
+// Класс, предназначенный для хранения самой высокой температуры за сутки.
+class HighTemp {
+private int hTemp;
+HighTemp(int ht) { hTemp = ht; }
+// Возвратить true, если вызывающий объект HighTemp
+// содержит такую же температуру, как у ht2.
+boolean sameTemp(HighTemp ht2) {
+return hTemp == ht2.hTemp;
+// Возвратить true, если вызывающий объект HighTemp
+// содержит температуру, которая ниже, чем у ht2.
+boolean lessThanTemp(HighTemp ht2) {
+return hTemp < ht2.hTemp;
+class InstanceMethWithObjectRefDemo {
+Глава 15.Лямбда-выражения 463
+// Метод, возвращающий количество вхождений объекта, для которого
+// выполняются некоторые критерии, указанные параметром MyFunc.
+static <T> int counter(T[] vals, MyFunc<T> f, T v) {
+int count = 0;
+for(int i=0; i < vals.length; i++)
+if(f.func(vals[i], v))
+count++;
+return count;
+public static void main(String[] args)
+{
+int count;
+// Создать массив объектов HighTemp.
+HighTemp[] weekDayHighs = { new HighTemp(89), new HighTemp(82),
+new HighTemp(90), new HighTemp(89),
+new HighTemp(89), new HighTemp(91),
+new HighTemp(84), new HighTemp(83) };
+// Использовать counter() с массивами элементов типа HighTemp.
+// Обратите внимание, что во втором аргументе передается ссылка
+// на метод экземпляра sameTemp().
+count = counter(weekDayHighs, HighTemp: :sameTemp, new HighTemp(89));
+System.out.println("Koличecтвo суток, когда самая высокая температура
+была 89 градусов: " +
+count);
+// Создать и использовать еще один массив элементов типа HighTemp.
+HighTemp[] weekDayHighs2 = { new HighTemp(32), new HighTemp(12),
+new HighTemp(24), new HighTemp(l 9),
+new HighTemp(l8), new HighTemp(l2),
+new HighTemp(-1), new HighTemp(lЗ) };
+count = counter(weekDayHighs2, HighTemp: :sameTemp, new HighTemp(l2));
+System.out.println("Koличecтвo суток, когда самая высокая температура
+была 12 градусов: " + count);
+// Использовать lessThanTemp() для нахождения суток, когда температура
+// была ниже указанного значения.
+count = counter(weekDayHighs, HighTemp::lessThanTemp, new HighTemp(89));
+System.out.println("Koличecтвo суток, когда самая высокая температура
+была меньше 8 9 градусов: " + count);
+count = counter(weekDayHighs2, HighTemp: :lessThanTemp, new HighTemp(l9));
+System.out.println("Koличecтвo суток, когда самая высокая температура
+была меньше 19 градусов: " + count);
+
+
+464
+// Демонстрация использова ния ссыпки на об общенный метод,
+// объявленный внутри необобщенного класса.
+// Функциона льный интерфейс, который работает с ма ссивом
+// и значением и возвраща ет результат int.
+interface MyFunc<T> {
+int func(T(] vals, T v);
+}
+// В этом классе определен метод по имени countMatching(), который
+// возвраща ет количество элементов в массиве, ра вных указанному значению.
+// Обратите внима ние, что метод countMatching() является обобщенным,
+// но класс MyArrayOps - нет.
+class MyArrayOps {
+static <T> int countMatching(T[] vals, T v) {
+int count = 0;
+for(int i=0; i < vals.length; i++)
+if(vals(i] == v)
+count++;
+return count;
+class GenericMethodRefDemo {
+Глава 15.Лямбда-выражения 465
+// Первый параметр этого метода имеет тип функционального интерфейса MyFunc.
+// в остальных двух параметрах он принимает массив и значение, оба типа T.
+static <T> int my0p(MyFunc<T> f, T[] vals, T v) {
+return f.func(vals, v);
+puЬlic static void main(String[] args)
+{
+Integer[] vals = { 1, 2, 3, 4, 2, 3, 4, 4, 5 };
+String[] strs = { "0ne", "Two", "Three", "Two" };
+int count;
+count = my0p(MyArray0ps: :<Integer>countMatching, vals, 4);
+System.out.println("Koличecтвo элементов 4, содержащихся в vals: "
++ count);
+count = my0p(MyArray0ps: :<String>countMatching, strs, "Two");
+System.out.println("Количество элементов Two, содержащихся в strs: "
++ count);
+
+466
+// Использование ссылки на метод при поиске максимального значения в коллекции.
+import java.util.*;
+class MyClass {
+private int val;
+MyClass(int v) val = v; }
+int getVal() { return val; }
+class UseMethodRef {
+// Метод compareMC(), совместимый с методом compare(),
+// который определен в Comparator<T>.
+static int compareMC(MyClass а, MyClass Ь) {
+return a.getVal() - b.getVal();
+public static void main(String(] args)
+{
+ArrayList<MyClass> al = new ArrayList<MyClass>();
+al.add(new MyClass(l));
+al.add(new MyClass(4));
+al.add(new MyClass(2));
+al.add(new MyClass(9));
+al.add(new MyClass(З));
+al.add(new MyClass(7));
+// Найти максимальное значение в al, используя метод compareMC().
+MyClass maxValObj = Collections.max(al, UseMethodRef: :compareMC);
+System.out.println("Максимальное значение равно: " + maxValObj.getVal());
+
+
+467
+// Демонстрация использования ссыпки на конструктор.
+// MyFunc - функциональный интерфейс, метод которого
+// возвращает ссыпку на конструктор MyClass.
+interface MyFunc {
+MyClass fuпc(int n);
+class MyClass {
+private int val;
+// Конструктор, принимающий аргумент.
+MyClass(int v) { val = v; }
+// Стандартный конструктор.
+MyClass() { val = 0; }
+//...
+int getVal() { return val; };
+class ConstructorRefDemo {
+public static void main(String[] args)
+{
+// Создать ссылку на конструктор MyClass.
+// Поскольку метод func() в MyFunc принимает аргумент, new ссыпается
+// на параметризованный конструктор MyClass, а не на стандартный.
+MyFunc myClassCons = MyClass: :new;
+// Создать экземпляр MyClass через эту ссыпку на конструктор.
+MyClass mc = myClassCons.func(100);
+// Использовать только что созданный экземпляр MyClass.
+System.out.println("val в mc равно " + mc.getVal());
+
+
+468
+// Демонстрация использования ССЫЛКИ на конструктор обобщенного класса.
+// Теперь MyFunc - об общенный функциональный интерфейс.
+interface MyFunc<T> {
+MyClass<T> func(T n);
+class MyClass<T> {
+private T val;
+// Конструктор, прини мающий аргумент.
+MyClass(T v) { val = v;)
+// Стандартный конструктор.
+MyClass() { val = nul l;)
+//...
+T getVal() { return val; };
+class ConstructorRefDemo2
+puЬlic static void main(String[] args)
+{
+// Создать ссыпку на конструктор MyClass<T>.
+MyFunc<Integer> myClassCons = MyClass<Integer> :: new;
+// Создать экземпляр MyClass<T> через эту ссыпку на конструктор.
+MyClass<Integer> mc = myClassCons.func(l00);
+// Использовать только что созданный экземпляр MyClass<T>.
+System.out.println("val в mc равно " + mc.getVal());
+
+
+469
+// Реализация простой фабрики классов с использованием ССЫЛКИ на конструктор.
+interface MyFunc<R, T> {
+R func(T n);
+// Простой обобщенный класс.
+class MyClass<T> {
+private T val;
+// Конструктор, принимающий аргумент.
+MyClass(T v) { val = v; }
+// Стандартный конструктор.В этой программе НЕ используется.
+MyClass() { val = null; }
+//...
+T getVal() { return val; };
+// Простой необобщенный класс.
+class MyClass2 {
+String str;
+// Конструктор, принимающий аргумент.
+MyClass2(String s) { str = s; }
+// Стандартный конструктор.В этой программе НЕ используется.
+MyClass2() { str = ""; }
+//...
+String getVal() { return str; };
+class ConstructorRefDemoЗ
+// Фабричный метод для объектов класса.Класс обязан иметь
+// конструктор, который принимает один параметр типа T.
+// Tип создаваемого объекта указывается в R.
+static <R, T> R myClassFactory(MyFunc<R, T> cons, т v) {
+return cons.func(v);
+public static void main(String[] args)
+{
+// Создать ссыпку на конструктор MyClass.
+// В этом случае new ссыпается на конструктор, принимающий аргумент.
+MyFunc<MyClass<Double>, Double> myClassCons = MyClass<DouЬle>: :new;
+// Создать экземпляр MyClass с применением фабричного метода.
+MyClass<Double> mc = myClassFactory(myClassCons, 100.1);
+// Использовать только что созданный экземпляр MyClass.
+System.out.println("val в mc равно " + mc.getVal());
+// Tеперь создать другой класс с применением myClassFactory().
+MyFunc<MyClass2, String> myClassCons2 = MyClass2: : new; •
+// Создать экземпляр MyClass2, используя фабричный метод.
+MyClass2 mc2 = myClassFactory(myClassCons2, "LamЬda");
+// Использовать только что созданный экземпляр MyClass2.
+System.out.println("str в mc2 равно " + mc2.getVal());
+
+
+471
+// Использование встроенного функционального интерфейса Function.
+// Импортировать интерфейс Function.
+import java.util.function.Function;
+class UseFunctioninterfaceDemo {
+public static void main(String[] args)
+{
+// Это блочное лямбда-выражение вычисляет факториал значения iпt.
+// Tеперь функциональным интерфейсом является Function.
+Function<Integer, Integer> factorial =(n) ->
+int result = 1;
+for(int i=l; i <= n; i++)
+result = i * result;
+return result;
+};
+System.out.println("Фaктopиaл 3 равен " + factorial.apply(З));
+System.out.println("Фaктopиaл 5 равен " + factorial.apply(S));
+
+
+

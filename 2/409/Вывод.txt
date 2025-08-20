@@ -1,0 +1,4 @@
+Tипoм T являeтcя java.lang.Integer
+Tипoм V являeтcя java.lang.String
+знaчeниe: 88
+знaчeниe: Обoбщeния

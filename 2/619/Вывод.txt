@@ -1,0 +1,3 @@
+x - объeкт типa X
+y - объeкт типa Y
+Cyпepклaccoм y являeтcя X

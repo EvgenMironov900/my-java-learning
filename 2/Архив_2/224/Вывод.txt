@@ -1,0 +1,15 @@
+Объем mybox1 равен 3000.0
+Вес mybox1 равен 34.3
+
+Oбъeм mybox2 равен 24.0
+Вес mybox2 равен 0.076
+
+Oбъeм mybox3 равен -1.0
+Bec mybox3 равен -1.0
+
+Объем myclone равен 3000.0
+Bec myclone равен 34.3
+
+Oбъeм mycube равен 27.0
+Bec mycube равен 2.0
+

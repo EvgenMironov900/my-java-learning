@@ -1,0 +1,10 @@
+echo Без аргументов  > Вывод.txt
+echo >> Вывод.txt
+java MethNestTry >> Вывод.txt
+echo С одним аргументом >> Вывод.txt
+echo >> Вывод.txt
+java MethNestTry arg1 >> Вывод.txt
+echo С двумя >> Вывод.txt
+echo >> Вывод.txt
+java MethNestTry arg1  arg2 >> Вывод.txt
+

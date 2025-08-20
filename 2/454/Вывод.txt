@@ -1,0 +1,4 @@
+Иcxoднaя строка: Lambdas add power to Java
+Cтpoкa в верхнем регистре: LAMBDAS ADD POWER TO JAVA
+Cтpoкa после удаления пробелов: LambdasaddpowertoJava
+Cтpoкa с противоположным порядком следования символов: avaJ ot rewop dda sadbmaL

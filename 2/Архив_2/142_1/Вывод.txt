@@ -1,0 +1,18 @@
+Kpaткaя справка по: 
+1. if
+2. switch
+3. while
+4. do-while
+5. for
+
+Bыбepитe вариант:
+
+
+Oпepaтop switch:
+
+switch (выpaжeниe) {
+  case константа:
+    последовательность операторов
+    break;
+  // ...
+}

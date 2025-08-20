@@ -1,0 +1,11 @@
+#!/bin/bash
+cd ~/EE/MyJAVA/2/247/mypack
+
+bash ../j0 mypack AccountBalance
+
+KodVyp=$?
+if [ $KodVyp -ne 0 ]; then
+  echo Выполнено с ошибкой
+  set -e
+fi
+

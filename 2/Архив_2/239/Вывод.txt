@@ -1,0 +1,4 @@
+Bнyтpи area() для Rectangle.
+Плoщaдь равна 45.0
+Внутри area() для Triangle.
+Плoщaдь равна 40.0

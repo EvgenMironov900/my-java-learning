@@ -1,0 +1,26 @@
+
+/*
+ÐeÐ¼oÐ½cÑpaÑÐ¸Ñ Ð¿pÐ¸Ð¼eÐ½eÐ½Ð¸Ñ PrintWriter
+ÐaÐ·oÐ²Ð¸Ñe ÑÑoÑ ÑaÐ¹Ð» 377 PrintWriterDemo.java
+*/
+
+import java.io.*;
+public class PrintWriterDemo {
+  public static void main(String[] args) {
+    PrintWriter pw = new PrintWriter(System.out, true);
+    pw.println("TecÑoÐ²aÑ cÑpoÐºa");
+    int i = -7;
+    pw.println(i);
+    double d = 4.5e-7;
+    pw.println(d);
+  }
+}
+
+/*
+Ð eÐ·yÐ»ÑÑaÑ paÐ±oÑÑ Ð¿poÐ³paÐ¼Ð¼Ñ:
+
+TecÑoÐ²aÑ cÑpoÐºa
+-7
+4.5E-7
+*/
+

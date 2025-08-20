@@ -1,0 +1,2 @@
+val в mc равно 100.1
+str в mc2 равно Lambda

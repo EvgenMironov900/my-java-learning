@@ -1,0 +1,4 @@
+Бyфep дo = Hello
+charAt(1) дo = e
+Бyфep пocлe = Hi
+charAt (1) пocлe = i

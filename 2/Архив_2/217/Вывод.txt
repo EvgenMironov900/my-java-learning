@@ -1,0 +1,9 @@
+Coдepжимoe superOb: 
+i и j: 10 20
+
+Coдepжимoe subOb: 
+i и j: 7 8
+ k: 9
+
+Сумма i, j и k в subOb: 
+i + j + k: 24

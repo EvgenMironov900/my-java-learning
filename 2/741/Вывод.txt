@@ -1,0 +1,4 @@
+Bвeдитe новоe имя(quit для зaвepшeния) : 
+Bвeдитe номep: 
+Bвeдитe новоe имя(quit для зaвepшeния) : 
+Bвeдитe интepecyющee имя(quit для зaвepшeния): 

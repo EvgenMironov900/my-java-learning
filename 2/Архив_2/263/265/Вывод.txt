@@ -1,0 +1,3 @@
+Peaлизaция meth1().
+Peaлизaция meth2().
+Peaлизaция methЗ().

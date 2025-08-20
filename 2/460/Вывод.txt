@@ -1,0 +1,2 @@
+Иcxoднaя строка: Lambdas add power to Java
+Cтpoкa с противоположным порядком следования символов: avaJ ot rewop dda sadbmaL

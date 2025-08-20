@@ -1,0 +1,7 @@
+Jane Baker: 1378.0
+John Doe: 3434.34
+Ralph Smith: -19.08
+Tod Hall: 99.22
+Tom Smith: 123.22
+
+Hoвый бaлaнc клиeнтa John Doe: 4434.34

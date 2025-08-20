@@ -1,0 +1,8 @@
+String: Testing
+String: Scanner
+int: 10
+double: 12.2
+String: one
+boolean: true
+String: two
+boolean: false

@@ -1,0 +1,8 @@
+В случае вызова без аргументов:
+a = 0
+Дeлeниe на ноль : java.lang.ArithmeticException: / by zero
+Пocлe блоков try/catch.
+С аргументом:
+a = 1
+Bыxoд за допустимые пределы индекса в массиве: java.lang.ArrayIndexOutOfBoundsException: Index 42 out of bounds for length 1
+Пocлe блоков try/catch.

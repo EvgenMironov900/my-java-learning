@@ -1,0 +1,3 @@
+getOb() в Gen : 88
+getOb() в Gen2 : 99
+getOb() в Gen2 : Тест обобщений

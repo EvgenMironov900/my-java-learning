@@ -1,0 +1,4 @@
+Oбъeм weightbox равен 105.0
+Bec weightbox равен 8.37
+
+Oбъeм plainbox равен 105.0

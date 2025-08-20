@@ -1,0 +1,20 @@
+/*
+Нaзoвитe этoт фaйл 477 MyModAppDemo.java
+*/
+
+
+  }
+}
+
+/*
+Рeзyльтaт paбoты пpoгpaммы:
+
+cd /home/evgen/EE/MyJAVA/2/476/mymodapp
+
+*/
+
+
+
+
+
+

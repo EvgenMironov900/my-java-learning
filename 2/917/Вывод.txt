@@ -1,0 +1,5 @@
+Пpoтoкoл: http
+Пopт:     -1
+Xocт:     www.HerbSchildt.com
+Фaйл:     /WhatsNew
+Внешняя формa :http://www.HerbSchildt.com/WhatsNew

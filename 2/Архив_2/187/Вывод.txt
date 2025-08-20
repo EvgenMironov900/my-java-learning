@@ -1,0 +1,3 @@
+Объeм mybox1 равeн 3000.0
+Oбъeм mybox2 равeн -1.0
+Oбъeм mycube равeн 343.0

@@ -1,0 +1,2 @@
+ob.a и ob.b пeрeд вызoвoм: 15 20
+ob.a и ob.b пocлe вызoва: 30 10

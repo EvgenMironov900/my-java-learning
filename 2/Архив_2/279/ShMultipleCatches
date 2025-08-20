@@ -1,0 +1,6 @@
+echo В случае вызова без аргументов: > Вывод.txt 2> Err.txt
+java MultipleCatches >> Вывод.txt 2> Err.txt
+
+echo С аргументом: >> Вывод.txt 2> Err.txt
+java MultipleCatches asdf >> Вывод.txt 2> Err.txt
+

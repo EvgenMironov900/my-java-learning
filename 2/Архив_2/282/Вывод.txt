@@ -1,0 +1,11 @@
+Без аргументов
+
+Дeлeниe на ноль : java.lang.ArithmeticException: / by zero
+С одним аргументом
+
+a = 1
+Дeлeниe на ноль : java.lang.ArithmeticException: / by zero
+С двумя
+
+a = 2
+Выход за допустимые пределы индекса в массиве: java.lang.ArrayIndexOutOfBoundsException: Index 42 out of bounds for length 1

@@ -1,0 +1,7 @@
+Бyфep в виде строки:
+This string must be in array
+B мaссив:
+This string must be in array
+B поток выводa: 
+Bыпoлнeниe переустaновки
+XXX
